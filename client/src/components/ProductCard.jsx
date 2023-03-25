@@ -19,7 +19,7 @@ import { StarIcon } from '@chakra-ui/icons';
 import { Link as ReactLink } from 'react-router-dom';
 import { useState } from 'react';
 
-const Rating = ({ rating, numReviews }) => {
+const Rating = ({ rating, numberOfReviews }) => {
   const { iconSize, setIconSize } = useState('14px');
   return (
     <Flex>
@@ -29,7 +29,7 @@ const Rating = ({ rating, numReviews }) => {
         <StarIcon size={iconSize} width={'14px'} color={rating >= 3 ? 'orange.500' : 'grey'} />
         <StarIcon size={iconSize} width={'14px'} color={rating >= 4 ? 'orange.500' : 'grey'} />
         <StarIcon size={iconSize} width={'14px'} color={rating >= 5 ? 'orange.500' : 'grey'} />
-        <Text>{`${numReviews} ${numReviews === 1 ? 'Review' : 'Reviews'}`}</Text>
+        <Text>{`${numberOfReviews} ${numberOfReviews === 1 ? 'Review' : 'Reviews'}`}</Text>
       </HStack>
     </Flex>
   );
@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
       shadow='1g'
       position='relative'
     >
-      {product.isNew && <Circle size='10px' position='absolute' top={2} right={2} bg='green.300' />}
+      {product.productIsNew && <Circle size='10px' position='absolute' top={2} right={2} bg='green.300' />}
       {product.stock <= 0 && <Circle size='10px' position='absolute' top={2} right={2} bg='red.300' />}
       <Image src={product.image} alt={product.name} roundedTop='1g' />
       <Box flex={'1'} maxH='5' alignItems={'baseline'}>
@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
           </Badge>
         )}
 
-        {product.isNew && (
+        {product.productIsNew && (
           <Badge rounded={'full'} px='2' fontSize={'0.8em'} colorScheme={'green'}>
             New
           </Badge>
@@ -74,7 +74,7 @@ const ProductCard = ({ product }) => {
       </Flex>
 
       <Flex justifyContent={'space-between'} alignContent={'center'} py={'2'}>
-        <Rating rating={product.rating} numReviews={product.numReviews} />
+        <Rating rating={product.rating} numberOfReviews={product.numberOfReviews} />
       </Flex>
 
       <Flex justifyContent={'space-between'}>
